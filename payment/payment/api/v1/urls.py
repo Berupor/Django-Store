@@ -1,12 +1,11 @@
 from django.urls import path
-from .views import buy_item, ItemListView, ItemDetailView, ItemTemplateView
+from .views import ItemListView, ItemDetailView, CreateCheckoutSessionView, CancelSuccessView, SuccessTemplateView
 
 urlpatterns = [
-    # path('item/<int:id>/', item_detail, name='item_detail'),
-    path('item/<int:id>/', ItemDetailView.as_view(), name='item_detail'),
-    path('buy/<int:id>/', buy_item, name='buy_item'),
+    path('item/<int:pk>/', ItemDetailView.as_view(), name='item_detail'),
     path('items/', ItemListView.as_view(), name='item_list'),
-    path('landing/', ItemTemplateView.as_view(), name='landing'),
-    path('create_checkout_session', )
+    path('buy/<int:pk>', CreateCheckoutSessionView.as_view(), name='buy'),
+    path('cancel/', CancelSuccessView.as_view(), name='cancel'),
+    path('success/', SuccessTemplateView.as_view(), name='success'),
 
 ]
