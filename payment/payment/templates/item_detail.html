@@ -8,14 +8,17 @@
             font-family: Arial, sans-serif;
             text-align: center;
         }
+
         h1 {
             font-size: 36px;
             margin-bottom: 24px;
         }
+
         p {
             font-size: 18px;
             margin-bottom: 24px;
         }
+
         button {
             padding: 12px 24px;
             font-size: 18px;
@@ -28,24 +31,13 @@
     </style>
 </head>
 <body>
-    <h1>{{ item.name }}</h1>
-    <p>{{ item.description }}</p>
-    <p>Price: ${{ item.price }}</p>
-    <button id="buy-button">Buy</button>
-    <script>
-        var buyButton = document.getElementById('buy-button');
-        buyButton.addEventListener('click', function () {
-            fetch('http://127.0.0.1:8000/api/v1/buy/{{ item.id }}/')
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (data) {
-                    var sessionId = data.sessionId;
-                    stripe.redirectToCheckout({
-                        sessionId: sessionId
-                    });
-                });
-        });
-    </script>
+<h1>{{ item.name }}</h1>
+<p>{{ item.description }}</p>
+<p>Price: ${{ item.get_price }}</p>
+
+<form action="{% url 'buy' item.id %}" method="POST">
+    {% csrf_token %}
+    <button type="submit" id="checkout-button">Checkout</button>
+</form>
 </body>
 </html>
