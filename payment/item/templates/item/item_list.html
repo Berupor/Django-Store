@@ -1,77 +1,28 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'item/css/styles.css' %}">
+{% endblock style %}
 
 {% block content %}
-    {{ message }}
-    <div class="row">
-    {% for item in items %}
-        <div class="col-sm-3">
-            <p>{{ item.name }}</p>
-            <p>Price: ${{ item.get_price }}</p>
-            {% if item in user.profile.items.all %}
-            <!-- add a button here to see the product -->
-            You own this
-            {% elif item in current_order_products %}
-            <a href="{% url 'shopping_cart:order_summary' %}" class="btn btn-warning">Go to Cart</a>
-            {% else %}
-            <a href="{% url 'shopping_cart:add_to_cart' item.id %}" class="btn btn-warning">Add to Cart</a>
-            {% endif %}
-        </div>
-    {% endfor %}
-    </div>
-{% endblock content %}
 
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Items for Sale</title>-->
-<!--    <style>-->
-<!--        body {-->
-<!--            font-family: Arial, sans-serif;-->
-<!--            text-align: center;-->
-<!--        }-->
-<!--        h1 {-->
-<!--            font-size: 36px;-->
-<!--            margin-bottom: 24px;-->
-<!--        }-->
-<!--        ul {-->
-<!--            list-style: none;-->
-<!--            padding: 0;-->
-<!--            margin: 0 auto;-->
-<!--            width: 50%;-->
-<!--            text-align: left;-->
-<!--        }-->
-<!--        li {-->
-<!--            background-color: #74d361;-->
-<!--            border-radius: 10px;-->
-<!--            margin-bottom: 12px;-->
-<!--            padding: 12px;-->
-<!--            color: white;-->
-<!--            text-align: center;-->
-<!--        }-->
-<!--        a {-->
-<!--            font-size: 24px;-->
-<!--            color: black;-->
-<!--            text-decoration: none;-->
-<!--            display: block;-->
-<!--            margin-bottom: 12px;-->
-<!--        }-->
-<!--        p {-->
-<!--            font-size: 18px;-->
-<!--            margin-bottom: 0;-->
-<!--        }-->
-<!--    </style>-->
-<!--</head>-->
-<!--<body>-->
-<!--    <h1>Items for Sale</h1>-->
-<!--    <ul>-->
-<!--        {% for item in items %}-->
-<!--        <li>-->
-<!--            <h2><a href="{% url 'item:item_detail' item.id %}">{{ item.name }}</a></h2>-->
-<!--            <p>{{ item.description }}</p>-->
-<!--            <p>Price: ${{ item.get_price }}</p>-->
-<!--        </li>-->
-<!--        {% endfor %}-->
-<!--    </ul>-->
-<!--</body>-->
-<!--</html>-->
+<h1>Items for Sale</h1>
+<ul>
+    {% for item in items %}
+    <li>
+        <h2 class="product-name"><a href="{% url 'item:item_detail' item.id %}">{{ item.name }}</a></h2>
+        <p class="product-description">{{ item.description }}</p>
+        <p class="product-price">Price: ${{ item.get_price }}</p>
+        {% if item in user.profile.items.all %}
+        <p class="product-owned">You own this</p>
+        {% elif item in current_order_products %}
+        <a href="{% url 'shopping_cart:order_summary' %}" class="product-action">Go to Cart</a>
+        {% else %}
+        <a href="{% url 'shopping_cart:add_to_cart' item.id %}" class="product-action yellow">Add to Cart</a>
+        {% endif %}
+    </li>
+    {% endfor %}
+
+</ul>
+{% endblock content %}

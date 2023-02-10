@@ -1,43 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ item.name }}</title>
-    <script src="https://js.stripe.com/v3/"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
+{% extends 'base.html' %}
+{% load static %}
 
-        h1 {
-            font-size: 36px;
-            margin-bottom: 24px;
-        }
+{% block style %}
 
-        p {
-            font-size: 18px;
-            margin-bottom: 24px;
-        }
+<link rel="stylesheet" href="{% static 'item/css/styles.css' %}">
+{% endblock style %}
 
-        button {
-            padding: 12px 24px;
-            font-size: 18px;
-            background-color: green;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-<h1>{{ item.name }}</h1>
-<p>{{ item.description }}</p>
-<p>Price: ${{ item.get_price }}</p>
+{% block head %}
 
-<form action="{% url 'buy' item.id %}" method="POST">
-    {% csrf_token %}
-    <button type="submit" id="checkout-button">Buy</button>
-</form>
-</body>
-</html>
+<title>{{ item.name }}</title>
+<script src="https://js.stripe.com/v3/"></script>
+{% endblock head %}
+
+{% block content %}
+
+<div class="item-container">
+  <h1 class="item-name">{{ item.name }}</h1>
+  <div class="item-image">
+  </div>
+  <div class="item-details">
+    <p class="item-description">{{ item.description }}</p>
+    <br>
+    <p class="item-price">Price: ${{ item.get_price }}</p>
+    <form action="{% url 'payment:buy_item' item.id %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" id="checkout-button">Buy</button>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}

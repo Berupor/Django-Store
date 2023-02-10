@@ -1,7 +1,7 @@
+import os
 from pathlib import Path
 
 from split_settings.tools import include, optional
-import os
 
 include(
     "components/database.py",
@@ -32,6 +32,10 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    BASE_DIR / "static",
+]
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, "templates")]

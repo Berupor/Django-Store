@@ -6,4 +6,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "payment.apps.PaymentConfig",
+    "item.apps.ItemConfig",
+    "profile.apps.AccountsConfig",
+    "shopping_cart.apps.ShoppingCartConfig",
 ]
