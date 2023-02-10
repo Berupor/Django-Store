@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>Checkout canceled</title>
-  <link rel="stylesheet" href="style.css">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -39,7 +38,7 @@
 <body>
   <section>
     <p>Forgot to add something to your cart? Shop around then come back to pay!</p>
-    <a href="{% url 'item_list' %}">Go back to items</a>
+    <a href="{% url 'item:item_list' %}">Go back to items</a>
   </section>
 </body>
 </html>
