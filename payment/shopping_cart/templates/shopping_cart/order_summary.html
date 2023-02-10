@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'shopping_cart/css/order_summary.css' %}">
+{% endblock style %}
+
+{% block content %}
+
+<div class="wrap cf">
+    <div class="heading cf">
+        <h1>My Cart</h1>
+        <a href="{% url 'item:item_list' %}" class="continue">Continue Shopping</a>
+    </div>
+    <div class="cart">
+        <ul class="cartWrap">
+            {% for item in order.get_cart_items %}
+
+            <li class="items even">
+                <div class="infoWrap">
+                    <div class="cartSection info">
+
+                        <img src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg" alt="" class="itemImg"/>
+                        <p class="itemNumber">#QUE-007544-002</p>
+                        <h3> {{ item.item.name }}</h3>
+
+
+                    </div>
+
+
+                    <div class="prodTotal cartSection">
+                        <p>${{ item.item.get_price }}</p>
+                    </div>
+
+                    <div class="cartSection removeWrap">
+                        <a href="{% url 'shopping_cart:delete_item' item.id %}" class="remove"
+                           onclick="return confirm_delete()">x</a>
+                    </div>
+                </div>
+
+            </li>
+            {% endfor %}
+
+
+        </ul>
+    </div>
+
+
+    <div class="subtotal cf">
+        <ul>
+            <li class="totalRow final"><span class="label">Total</span><span
+                    class="value">${{order.get_cart_total}}</span></li>
+            <li class="totalRow">
+                <form action="{% url 'payment:buy_order' %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" id="checkout-button" class="btn continue">Buy</button>
+                </form>
+                <!--                <a href="{% url 'payment:buy_order' %}" class="btn continue">Checkout</a>-->
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script>
+    function confirm_delete() {
+        return confirm("Do you want to remove this item from cart?");
+    }
+</script>
+{% endblock scripts %}
