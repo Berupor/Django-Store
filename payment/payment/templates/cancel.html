@@ -1,44 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Checkout canceled</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #F2F2F2;
-      text-align: center;
-    }
-    section {
-      background-color: #FFFFFF;
-      display: inline-block;
-      padding: 40px;
-      margin: 40px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    p {
-      font-size: 24px;
-      margin-bottom: 24px;
-    }
-    a {
-      background-color: #5CC04A;
-      color: #FFFFFF;
-      text-decoration: none;
-      padding: 12px 24px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: all 0.2s ease-in-out;
-    }
-    a:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    }
-  </style>
+    <title>Checkout canceled</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F2F2F2;
+            text-align: center;
+        }
+
+        section {
+            background-color: #FFFFFF;
+            display: inline-block;
+            padding: 40px;
+            margin: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            font-size: 24px;
+            margin-bottom: 24px;
+        }
+
+        a {
+            background-color: #5CC04A;
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease-in-out;
+        }
+
+        a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
-  <section>
+<section>
     <p>Forgot to add something to your cart? Shop around then come back to pay!</p>
     <a href="{% url 'item:item_list' %}">Go back to items</a>
-  </section>
+</section>
 </body>
 </html>

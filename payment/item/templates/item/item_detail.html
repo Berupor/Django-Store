@@ -22,10 +22,6 @@
     <p class="item-description">{{ item.description }}</p>
     <br>
     <p class="item-price">Price: ${{ item.get_price }}</p>
-    <form action="{% url 'payment:buy_item' item.id %}" method="POST">
-        {% csrf_token %}
-        <button type="submit" id="checkout-button">Buy</button>
-    </form>
   </div>
 </div>
 
