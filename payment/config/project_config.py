@@ -3,8 +3,6 @@
 import os
 
 from pydantic import BaseSettings
-from stripe import webhook
-from stripe.api_resources.apps import secret
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENV_DIR = os.path.join(BASE_DIR, "..")

@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-from split_settings.tools import include, optional
+from split_settings.tools import include
 
 include(
     "components/database.py",
