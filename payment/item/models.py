@@ -14,4 +14,4 @@ class Item(models.Model):
         return self.name
 
     def get_price(self):
-        return round(self.price // 100, 2)
+        return round(self.price // 100)
