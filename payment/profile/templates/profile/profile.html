@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load static %}
 
+{% block style %}
+<link rel="stylesheet" href="{% static 'item/css/styles.css' %}">
+{% endblock style %}
 <table class="table table-hover table-bordered text-center">
       <tr class="text-center">
         <th>Date Ordered</th>
@@ -9,13 +13,13 @@
         <th>Items</th>
         <th>Price</th>
       </tr>
-      {% for order in my_orders %}
+      {% for order in orders %}
         <tr>
           <td>{{ order.date_ordered }}</td>
-          <td>{{ order.ref_code }}</td>
+          <td>№{{ order.ref_code }}</td>
           <td>
         	{% for item in order.items.all %}
-        		{{ item.product.name }}
+        		{{ item.item.name }}
       		{% endfor %}
       	  </td>
           <td>${{ order.get_cart_total }}</td>
@@ -29,7 +33,7 @@
 
       <tr>
         <td colspan=4>
-          <a href="{% url 'item:item_list' %}" class="btn btn-warning pull-left">
+          <a href="{% url 'item:item_list' %}" class="btn btn-success pull-left">
             {% if not order %}Continue Shopping{% else %}Add Items to Cart {% endif %}
           </a> 
         </td>

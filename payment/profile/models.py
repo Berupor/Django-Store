@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
+
 from item.models import Item
 
 
@@ -10,6 +11,9 @@ class Profile(models.Model):
 
     class Meta:
         db_table = "profile"
+
+    def __str__(self):
+        return self.user.username
 
 
 class ProfileItem(models.Model):
@@ -24,8 +28,11 @@ class ProfileItem(models.Model):
         db_table = "profile_item"
 
 
-def post_save_profile_create(sender, instance, created, *args, **kwargs):
-    user_profile, created = Profile.objects.get_or_create(user=instance)
+def post_save_profile_create(sender, instance, *args, **kwargs):
+    """
+    Function for simplify user profile creation.
+    """
+    Profile.objects.get_or_create(user=instance)
 
 
 post_save.connect(post_save_profile_create, sender=User)
