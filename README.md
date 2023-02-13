@@ -49,4 +49,3 @@ make listen
 - Add items in `http://localhost:8000/admin/` panel
 - Go to `http://localhost:8000/api/v1/items/` and start using marketplace
 
----
