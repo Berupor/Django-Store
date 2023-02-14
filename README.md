@@ -16,7 +16,10 @@ functionalities such as adding products, managing orders, and processing payment
 
 1. Clone the repository to your local machine
 2. Create a .env file and fill it with values ​​from `.env`
-3. Run compose `docker-compose up -d --build`
+3. Run compose
+```console
+docker-compose up -d --build
+```
 
 ### In the container:
 
